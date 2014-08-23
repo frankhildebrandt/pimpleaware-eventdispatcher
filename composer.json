@@ -1,0 +1,22 @@
+{
+    "name": "frankhildebrandt/pimple-serviceaware-eventdispatcher",
+    "require": {
+        "pimple/pimple": "3.*",
+        "symfony/event-dispatcher": "2.5.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "authors": [
+        {
+            "name": "Frank Hildebrandt",
+            "email": "frank.hildebrandt@me.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FHild\\Pimple\\EventDispatcher\\": "src/",
+            "FHild\\Pimple\\EventDispatcherTest\\": "tests/"
+        }
+    }
+}
