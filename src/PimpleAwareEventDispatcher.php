@@ -4,7 +4,8 @@ namespace FHild\Pimple\EventDispatcher;
 
 use Pimple\Container;
 
-class PimpleAwareEventDispatcher extends \Symfony\Component\EventDispatcher\EventDispatcher {
+class PimpleAwareEventDispatcher extends \Symfony\Component\EventDispatcher\EventDispatcher
+{
 
     /**
      * @var \Pimple\Container
@@ -22,15 +23,29 @@ class PimpleAwareEventDispatcher extends \Symfony\Component\EventDispatcher\Even
     public function getListeners($eventName = null)
     {
         $processedListeners = array();
-        foreach(parent::getListeners($eventName) as $listener) {
+        foreach (parent::getListeners($eventName) as $listener) {
             if (is_string($listener)) {
-                list($service, $method) = explode(":", $listener);
-                $processedListeners[] = array($this->container[$service], $method);
+                $processedListeners[] = $this->getCallable($listener);
             } else {
                 $processedListeners[] = $listener;
             }
         }
         return $processedListeners;
+    }
+
+    /**
+     * @param $listener
+     * @return array
+     */
+    protected function getCallable($listener)
+    {
+        if (strpos($listener, ":") !== false) {
+            list($service, $method) = explode(":", $listener);
+            $callable = array($this->container[$service], $method);
+            return $callable;
+        }
+
+        return $this->container[$listener];
     }
 
 }
