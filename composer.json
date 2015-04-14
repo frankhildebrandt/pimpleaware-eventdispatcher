@@ -1,9 +1,10 @@
 {
     "name": "frankhildebrandt/pimple-serviceaware-eventdispatcher",
-    "license": "BSD-3-CLAUSE",
+    "license": "BSD-3-Clause",
+    "description": "Eventdispatcher which knows pimple services",
     "require": {
         "pimple/pimple": "3.*",
-        "symfony/event-dispatcher": "~2.5.*"
+        "symfony/event-dispatcher": "~2.5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
